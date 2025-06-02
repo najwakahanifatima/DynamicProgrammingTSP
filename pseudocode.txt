@@ -1,0 +1,34 @@
+Algoritma
+
+global variables
+    adjacent matrix         : matrix m 
+    memo for checked state  : map memo
+    start                   : integer start
+
+def tsp(int i, set s) -> integer cost
+    # base
+    if s is empty:
+        return matrix[i][start]
+    # rekurens
+    minCost = infinity
+    minIdx = 0
+    for each element j in s:
+        scopy is remove j from s
+        cost = matrix[i][j] + tsp(j, scopy)
+        if cost < minCost then
+            minCost = cost
+            minIdx = j
+    #store in memo
+    add state {i, s} and {minIdx, minCost} to memo
+
+def getPath() -> list result, integer minCost
+    input and initialize matrix
+    initialize result
+    minCost = tsp(startIdx, {V - startIdx})
+    s = {V - start}
+    append start in res
+    while not empty s:
+        next_city, _ = memo[(current, s)]
+        res.append(next_city)
+        s.remove(next_city)
+        current = next_city
