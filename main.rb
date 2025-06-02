@@ -27,7 +27,7 @@ def tsp(i, s)
 end
 
 def get_path
-  res = [$startIdx]
+  res = [$startIdx + 1]
   s = Set.new(0...$matrix.length) - [$startIdx]
   current = $startIdx
   minCost = tsp($startIdx, s)
@@ -35,7 +35,7 @@ def get_path
   while !s.empty?
     key = [current, s]
     next_city, _ = $memo[key]
-    res << next_city
+    res << next_city + 1
     s.delete(next_city)
     current = next_city
   end
@@ -61,4 +61,4 @@ $matrix.each { |row| puts row.join(" ") }
 path, cost = get_path
 
 puts "Minimum cost: #{cost}"
-puts "Optimal path: #{path.join(' -> ')} -> #{$startIdx}"
+puts "Optimal path: #{path.join(' -> ')} -> #{$startIdx+1}"
